@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp3fwj5lcdhg4"]
+
+[ext_resource type="PackedScene" uid="uid://esjgg823gu6w" path="res://scenes/bird.tscn" id="1_7gkcw"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_tesu1"]
+[ext_resource type="PackedScene" uid="uid://c40yjm86invg3" path="res://scenes/floor.tscn" id="3_q1wjm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ve3o4"]
+size = Vector2(800, 43)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_tesu1")
+
+[node name="bird" parent="." instance=ExtResource("1_7gkcw")]
+position = Vector2(292, 203)
+
+[node name="floor" parent="." instance=ExtResource("3_q1wjm")]
+
+[node name="floor hitbox" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor hitbox"]
+position = Vector2(400, 578.5)
+shape = SubResource("RectangleShape2D_ve3o4")

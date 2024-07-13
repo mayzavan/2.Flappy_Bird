@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8wlrwfdblu2a"]
+
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_hvmpw"]
+[ext_resource type="Texture2D" uid="uid://ce0kyavhqvynh" path="res://art/wall.png" id="1_m8g0b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bygcd"]
+radius = 64.0
+height = 484.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8dmv"]
+size = Vector2(20, 32.0833)
+
+[node name="wall" type="Node2D"]
+script = ExtResource("1_hvmpw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -275)
+scale = Vector2(4, 4)
+texture = ExtResource("1_m8g0b")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 275)
+rotation = 3.14159
+scale = Vector2(4, 4)
+texture = ExtResource("1_m8g0b")
+
+[node name="HitArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(0, -312)
+scale = Vector2(1, 0.978723)
+shape = SubResource("CapsuleShape2D_bygcd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(0, 312)
+scale = Vector2(1, 0.986682)
+shape = SubResource("CapsuleShape2D_bygcd")
+
+[node name="ScoreArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
+position = Vector2(98, -2.5)
+scale = Vector2(1.795, 7.2)
+shape = SubResource("RectangleShape2D_w8dmv")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]
