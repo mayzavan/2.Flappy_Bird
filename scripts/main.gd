@@ -6,29 +6,27 @@ var score
 var game_lost
 var scroll
 var scroll_sp
-var screen_size
 var play
 var hardened
 
 func _ready():
 	hardened = true
-	scroll_sp = 4
+	scroll_sp = 400
 	scroll = 0
 	score = 0
 	$gameover.hide()
 	game_lost = false
-	screen_size = get_window().size
 	play = false
 
 func _process(delta):
 	if play == true:
 		if game_lost == false:
 			scroll += scroll_sp
-			if scroll >= screen_size.x:
+			if $floor.position.x <= -800:
 				scroll = 0
-			$floor.position.x =- scroll
+			$floor.position.x =- scroll * delta
 			for wall in walls:
-				wall.position.x -= scroll_sp
+				wall.position.x -= scroll_sp * delta
 				
 				$Score.text = (str(score))
 			

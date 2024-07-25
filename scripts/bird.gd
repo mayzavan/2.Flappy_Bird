@@ -16,7 +16,7 @@ func _process(delta):
 		velocity.y += GRAVITY * delta * delta
 		position.y += velocity.y
 		
-		position.y = clamp(position.y,0,534)
+		position.y = clamp(position.y,0,554)
 		
 		if position.y >=534:
 			hit.emit()
